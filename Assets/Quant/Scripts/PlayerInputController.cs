@@ -35,7 +35,7 @@ namespace Quant
                     var h = Input.GetAxis("MoveX");
                     var v = Input.GetAxis("MoveY");
                     var velocity = new Vector3(h, 0.0f, v);
-                    a.TransformController.Move(velocity * Time.deltaTime * _this.speed);
+                    a.TransformController.Move(velocity * _this.speed);
                     a.AnimationController.SetMove(velocity);
                 });
         }

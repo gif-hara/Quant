@@ -14,14 +14,17 @@ namespace Quant
 
         private Transform cachedTransform;
 
+        private CharacterController characterController;
+
         void Awake()
         {
             this.cachedTransform = this.transform;
+            this.characterController = this.GetComponent<CharacterController>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            this.cachedTransform.localPosition += this.velocity;
+            this.characterController.SimpleMove(this.velocity);
             this.velocity = Vector3.zero;
 
             if(this.rotate != Quaternion.identity)
