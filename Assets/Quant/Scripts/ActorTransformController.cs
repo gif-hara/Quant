@@ -24,7 +24,11 @@ namespace Quant
             this.cachedTransform.localPosition += this.velocity;
             this.velocity = Vector3.zero;
 
-            this.cachedTransform.localRotation = this.rotate;
+            if(this.rotate != Quaternion.identity)
+            {
+                this.cachedTransform.localRotation = this.rotate;
+                this.rotate = Quaternion.identity;
+            }
         }
 
         public void Move(Vector3 velocity)
@@ -35,6 +39,11 @@ namespace Quant
         public void Rotate(Quaternion rotate)
         {
             this.rotate = rotate;
+        }
+
+        public void RotateImmediate(Quaternion rotate)
+        {
+            this.cachedTransform.localRotation = rotate;
         }
     }
 }

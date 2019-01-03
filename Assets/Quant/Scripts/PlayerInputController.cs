@@ -4,6 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Assertions;
+using HK.Framework.Extensions;
 
 namespace Quant
 {
@@ -13,7 +14,7 @@ namespace Quant
     public sealed class PlayerInputController : MonoBehaviour
     {
         [SerializeField]
-        private float speed;
+        private float speed = 0.0f;
 
         void Awake()
         {
@@ -39,16 +40,23 @@ namespace Quant
 
         private void SetupRotation(Actor actor)
         {
+            var muzzles = actor.GetComponentsInChildren<Muzzle>();
             this.UpdateAsObservable()
-                .SubscribeWithState2(this, actor, (_, _this, a) =>
+                .SubscribeWithState3(this, actor, muzzles, (_, _this, a, _muzzles) =>
                 {
                     var h = Input.GetAxis("RotateX");
                     var v = Input.GetAxis("RotateY");
-                    if(h + v == 0.0f)
+                    Debug.Log($"h = {h}, v = {v} IsEqual = {Extensions.IsEqual(h + v, 0.0f)}");
+                    if(Extensions.IsEqual(h + v, 0.0f))
                     {
                         return;
                     }
-                    a.TransformController.Rotate(Quaternion.LookRotation(new Vector3(h, 0.0f, v), Vector3.up));
+                    
+                    a.TransformController.RotateImmediate(Quaternion.LookRotation(new Vector3(h, 0.0f, v), Vector3.up));
+                    foreach (var m in _muzzles)
+                    {
+                        m.Fire();
+                    }
                 });
         }
     }
