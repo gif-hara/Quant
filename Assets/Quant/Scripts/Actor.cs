@@ -10,14 +10,14 @@ namespace Quant
     /// </summary>
     public sealed class Actor : MonoBehaviour
     {
-        public Animator Animator { get; private set; }
-
         public ActorTransformController TransformController { get; private set; }
+
+        public ActorAnimationController AnimationController { get; private set; }
 
         void Awake()
         {
-            this.Animator = this.GetComponent<Animator>();
             this.TransformController = this.GetComponent<ActorTransformController>();
+            this.AnimationController = this.GetComponent<ActorAnimationController>();
         }
     }
 }
