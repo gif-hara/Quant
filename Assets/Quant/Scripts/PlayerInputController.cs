@@ -46,12 +46,11 @@ namespace Quant
                 {
                     var h = Input.GetAxis("RotateX");
                     var v = Input.GetAxis("RotateY");
-                    Debug.Log($"h = {h}, v = {v} IsEqual = {Extensions.IsEqual(h + v, 0.0f)}");
-                    if(Extensions.IsEqual(h + v, 0.0f))
+                    if(HK.Framework.Extensions.Extensions.IsEqual(h + v, 0.0f))
                     {
                         return;
                     }
-                    
+
                     a.TransformController.RotateImmediate(Quaternion.LookRotation(new Vector3(h, 0.0f, v), Vector3.up));
                     foreach (var m in _muzzles)
                     {
