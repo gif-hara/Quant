@@ -17,6 +17,8 @@ namespace Quant
 
         private Transform cachedTransform;
 
+        private Rigidbody cachedRigidbody;
+
         private float speed;
 
         private float lifeTime;
@@ -24,20 +26,25 @@ namespace Quant
         void Awake()
         {
             this.cachedTransform = this.transform;
+            this.cachedRigidbody = this.GetComponent<Rigidbody>();
             this.UpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) =>
                 {
-                    _this.cachedTransform.localPosition += _this.cachedTransform.forward * _this.speed * Time.deltaTime;
                     _this.lifeTime -= Time.deltaTime;
-                    if(_this.lifeTime <= 0.0f)
+                    if (_this.lifeTime <= 0.0f)
                     {
                         _this.objectPool.Return(this);
                     }
                 });
+            this.FixedUpdateAsObservable()
+                .SubscribeWithState(this, (_, _this) =>
+                {
+                    _this.cachedRigidbody.MovePosition(_this.cachedTransform.position + _this.cachedTransform.forward * _this.speed * Time.deltaTime);
+                });
             this.OnTriggerEnterAsObservable()
                 .SubscribeWithState(this, (x, _this) =>
                 {
-                    Debug.Log(x.attachedRigidbody.name, x);
+                    _this.OnCollision(x);
                 });
         }
 
@@ -59,6 +66,18 @@ namespace Quant
             original.objectPool = objectPool;
 
             return original;
+        }
+
+        private void OnCollision(Collider other)
+        {
+            this.objectPool.Return(this);
+
+            if(other.attachedRigidbody == null)
+            {
+                return;
+            }
+
+            Debug.Log(other.attachedRigidbody.name, other.attachedRigidbody);
         }
     }
 }

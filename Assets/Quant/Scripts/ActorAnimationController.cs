@@ -29,7 +29,6 @@ namespace Quant
         {
             var rotation = this.cachedTransform.rotation * Quaternion.Euler(0.0f, 0.0f, 180.0f);
             velocity = rotation * velocity;
-            Debug.Log(velocity);
             this.animator.SetFloat(Parameter.Forward, velocity.z);
             this.animator.SetFloat(Parameter.Right, -velocity.x);
         }
