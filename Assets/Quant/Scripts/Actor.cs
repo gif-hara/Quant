@@ -10,20 +10,14 @@ namespace Quant
     /// </summary>
     public sealed class Actor : MonoBehaviour
     {
-        private Animator animator;
+        public Animator Animator { get; private set; }
+
+        public ActorTransformController TransformController { get; private set; }
 
         void Awake()
         {
-            this.animator = this.GetComponent<Animator>();
-            this.UpdateAsObservable()
-                .SubscribeWithState(this, (_, _this) =>
-                {
-                    if (Input.GetKeyDown(KeyCode.A))
-                    {
-                        this.animator.SetTrigger("Attack");
-                        Debug.Log("?");
-                    }
-                });
+            this.Animator = this.GetComponent<Animator>();
+            this.TransformController = this.GetComponent<ActorTransformController>();
         }
     }
 }
