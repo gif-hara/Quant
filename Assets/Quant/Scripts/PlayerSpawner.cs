@@ -16,6 +16,7 @@ namespace Quant
         void Start()
         {
             var actor = Instantiate(this.actor);
+            actor.gameObject.SetLayerRecursive(Layers.Id.Player);
             Broker.Global.Publish(SpawnedPlayerActor.Get(actor));
         }
     }

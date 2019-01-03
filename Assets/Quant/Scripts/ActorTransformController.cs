@@ -8,9 +8,9 @@ namespace Quant
     /// </summary>
     public sealed class ActorTransformController : MonoBehaviour
     {
-        private Vector3 velocity;
+        private Vector3 velocity = Vector3.zero;
 
-        private Quaternion rotate;
+        private Quaternion rotate = Quaternion.identity;
 
         private Transform cachedTransform;
 

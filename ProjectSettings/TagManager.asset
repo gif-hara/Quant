@@ -14,11 +14,11 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Player/Bullet
+  - Enemy
+  - Enemy/Bullet
+  - Background
   - 
   - 
   - 

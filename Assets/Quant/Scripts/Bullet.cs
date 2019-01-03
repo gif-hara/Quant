@@ -34,14 +34,26 @@ namespace Quant
                         _this.objectPool.Return(this);
                     }
                 });
+            this.OnTriggerEnterAsObservable()
+                .SubscribeWithState(this, (x, _this) =>
+                {
+                    Debug.Log(x.attachedRigidbody.name, x);
+                });
         }
 
-        public Bullet Spawn(Vector3 position, Quaternion rotation, float speed, float lifeTime)
+        public Bullet Spawn(
+            Vector3 position,
+            Quaternion rotation,
+            float speed,
+            float lifeTime,
+            Layers.Id layer
+            )
         {
             var objectPool = objectPoolBundle.Get(this);
             var original = objectPool.Rent();
             original.cachedTransform.localPosition = position;
             original.cachedTransform.localRotation = rotation;
+            original.gameObject.SetLayerRecursive(layer);
             original.speed = speed;
             original.lifeTime = lifeTime;
             original.objectPool = objectPool;
