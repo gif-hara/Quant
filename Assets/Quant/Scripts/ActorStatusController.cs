@@ -45,7 +45,7 @@ namespace Quant
             if(oldIsDead != newIsDead)
             {
                 Object.Destroy(this.actor.gameObject);
-                this.actor.Broker.Publish(DiedActor.Get(this.actor));
+                this.actor.Broker.Publish(DiedActor.Get());
             }
         }
 

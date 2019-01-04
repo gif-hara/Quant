@@ -7,11 +7,10 @@ namespace Quant.Events
     /// <summary>
     /// アクターが死亡した際に通知されるイベント
     /// </summary>
-    public sealed class DiedActor : Message<DiedActor, Actor>
+    /// <remarks>
+    /// 死亡したアクターに対して通知しています
+    /// </remarks>
+    public sealed class DiedActor : Message<DiedActor>
     {
-        /// <summary>
-        /// 死亡したアクター
-        /// </summary>
-        public Actor Actor => this.param1;
     }
 }

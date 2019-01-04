@@ -10,15 +10,17 @@ namespace Quant
     /// </summary>
     public abstract class EnemySpawner : MonoBehaviour
     {
-        protected void Spawn(ActorSpawnParameter parameter, Vector3 position, Quaternion rotation)
+        protected Actor Spawn(ActorSpawnParameter parameter, Vector3 position, Quaternion rotation)
         {
             var actor = parameter.Spawn(position, rotation, Layers.Id.Enemy);
             Broker.Global.Publish(SpawnedEnemyActor.Get(actor, this.gameObject));
+
+            return actor;
         }
 
-        protected void Spawn(ActorSpawnParameter parameter, Transform transform)
+        protected Actor Spawn(ActorSpawnParameter parameter, Transform transform)
         {
-            this.Spawn(parameter, transform.position, transform.rotation);
+            return this.Spawn(parameter, transform.position, transform.rotation);
         }
     }
 }
