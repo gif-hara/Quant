@@ -141,10 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a711c99d76414239b522eaf979f0ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 1825275797, guid: 27b169786ac2c4310bb5fef03c05fbb9, type: 3}
-  status: {fileID: 11400000, guid: 26ca923620c78ec48bd4955d148cea5c, type: 2}
-  attachObjects:
-  - {fileID: 7643010640330265810, guid: 6bc1c4aa66599a94cbe8721254921eb1, type: 3}
+  parameter: {fileID: 11400000, guid: 7d645683a141fc440bbc394abcd44289, type: 2}
 --- !u!4 &193223547
 Transform:
   m_ObjectHideFlags: 0
