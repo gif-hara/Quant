@@ -14,10 +14,17 @@ namespace Quant
 
         public ActorAnimationController AnimationController { get; private set; }
 
+        public ActorStatusController StatusController { get; private set; }
+
         void Awake()
         {
             this.TransformController = this.GetComponent<ActorTransformController>();
             this.AnimationController = this.GetComponent<ActorAnimationController>();
+        }
+
+        public void Setup(ActorStatus status)
+        {
+            this.StatusController = new ActorStatusController(status);
         }
     }
 }

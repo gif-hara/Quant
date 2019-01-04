@@ -14,11 +14,15 @@ namespace Quant
         private Actor actor = null;
 
         [SerializeField]
+        private ActorStatus status = null;
+
+        [SerializeField]
         private GameObject[] attachObjects = null;
 
         void Start()
         {
             var actor = Instantiate(this.actor);
+            actor.Setup(this.status);
             foreach(var o in this.attachObjects)
             {
                 var child = Instantiate(o);
