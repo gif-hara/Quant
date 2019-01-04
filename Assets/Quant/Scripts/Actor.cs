@@ -16,15 +16,18 @@ namespace Quant
 
         public ActorStatusController StatusController { get; private set; }
 
+        public IMessageBroker Broker { get; private set; }
+
         void Awake()
         {
+            this.Broker = new MessageBroker();
             this.TransformController = this.GetComponent<ActorTransformController>();
             this.AnimationController = this.GetComponent<ActorAnimationController>();
         }
 
         public void Setup(ActorStatus status)
         {
-            this.StatusController = new ActorStatusController(status);
+            this.StatusController = new ActorStatusController(this, status);
         }
     }
 }

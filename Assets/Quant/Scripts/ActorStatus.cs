@@ -13,15 +13,24 @@ namespace Quant
         /// <summary>
         /// ヒットポイント
         /// </summary>
-        public int HitPoint => this.hitPoint;
+        public int HitPoint { get { return this.hitPoint; } set { this.hitPoint = value; } }
         [SerializeField]
         private int hitPoint = 0;
 
         /// <summary>
         /// 移動速度
         /// </summary>
-        public float MoveSpeed => this.moveSpeed;
+        public float MoveSpeed { get { return this.moveSpeed; } set { this.moveSpeed = value; } }
         [SerializeField]
         private float moveSpeed = 1.0f;
+
+        public ActorStatus Clone()
+        {
+            var clone = CreateInstance<ActorStatus>();
+            clone.hitPoint = this.hitPoint;
+            clone.moveSpeed = this.moveSpeed;
+
+            return clone;
+        }
     }
 }

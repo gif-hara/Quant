@@ -1,4 +1,5 @@
 ﻿using HK.Framework;
+using Quant.Events;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Quant
 
         private float currentLifeTime;
 
-        private BulletStatus status;
+        public BulletStatus Status { get; private set; }
 
         void Awake()
         {
@@ -39,7 +40,7 @@ namespace Quant
             this.FixedUpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) =>
                 {
-                    _this.cachedRigidbody.MovePosition(_this.cachedTransform.position + _this.cachedTransform.forward * _this.status.Speed * Time.deltaTime);
+                    _this.cachedRigidbody.MovePosition(_this.cachedTransform.position + _this.cachedTransform.forward * _this.Status.Speed * Time.deltaTime);
                 });
             this.OnTriggerEnterAsObservable()
                 .SubscribeWithState(this, (x, _this) =>
@@ -61,7 +62,7 @@ namespace Quant
             original.cachedTransform.localRotation = rotation;
             original.gameObject.SetLayerRecursive(layer);
             original.currentLifeTime = status.LifeTime;
-            original.status = status;
+            original.Status = status;
             original.objectPool = objectPool;
 
             return original;
@@ -70,13 +71,13 @@ namespace Quant
         private void OnCollision(Collider other)
         {
             this.objectPool.Return(this);
-
-            if(other.attachedRigidbody == null)
+            var actor = other.GetComponent<Actor>();
+            if(actor == null)
             {
                 return;
             }
 
-            Debug.Log(other.attachedRigidbody.name, other.attachedRigidbody);
+            actor.Broker.Publish(CollisionedBullet.Get(this));
         }
     }
 }

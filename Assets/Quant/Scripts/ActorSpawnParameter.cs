@@ -25,7 +25,7 @@ namespace Quant
 
         public Actor Spawn(Vector3 position, Quaternion rotation, Layers.Id layerId)
         {
-            var actor = Instantiate(this.actor);
+            var actor = Instantiate(this.actor, position, rotation);
             actor.Setup(this.actorStatus);
             foreach (var o in this.attachObjects)
             {
