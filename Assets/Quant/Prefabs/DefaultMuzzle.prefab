@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 714447687995510207}
   - component: {fileID: 5748015535383652381}
   m_Layer: 0
-  m_Name: Muzzle
+  m_Name: DefaultMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7624732773748459336, guid: 77113953dc7c240daa9e4390d080a563, type: 3}
-  speed: 20
-  lifeTime: 1
+  status: {fileID: 11400000, guid: 5c57e8f7365aabc41a7770d3dce3ca3b, type: 2}
   coolTime: 0.1

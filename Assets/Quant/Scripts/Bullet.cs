@@ -19,9 +19,9 @@ namespace Quant
 
         private Rigidbody cachedRigidbody;
 
-        private float speed;
+        private float currentLifeTime;
 
-        private float lifeTime;
+        private BulletStatus status;
 
         void Awake()
         {
@@ -30,8 +30,8 @@ namespace Quant
             this.UpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) =>
                 {
-                    _this.lifeTime -= Time.deltaTime;
-                    if (_this.lifeTime <= 0.0f)
+                    _this.currentLifeTime -= Time.deltaTime;
+                    if (_this.currentLifeTime <= 0.0f)
                     {
                         _this.objectPool.Return(this);
                     }
@@ -39,7 +39,7 @@ namespace Quant
             this.FixedUpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) =>
                 {
-                    _this.cachedRigidbody.MovePosition(_this.cachedTransform.position + _this.cachedTransform.forward * _this.speed * Time.deltaTime);
+                    _this.cachedRigidbody.MovePosition(_this.cachedTransform.position + _this.cachedTransform.forward * _this.status.Speed * Time.deltaTime);
                 });
             this.OnTriggerEnterAsObservable()
                 .SubscribeWithState(this, (x, _this) =>
@@ -51,9 +51,8 @@ namespace Quant
         public Bullet Spawn(
             Vector3 position,
             Quaternion rotation,
-            float speed,
-            float lifeTime,
-            Layers.Id layer
+            Layers.Id layer,
+            BulletStatus status
             )
         {
             var objectPool = objectPoolBundle.Get(this);
@@ -61,8 +60,8 @@ namespace Quant
             original.cachedTransform.localPosition = position;
             original.cachedTransform.localRotation = rotation;
             original.gameObject.SetLayerRecursive(layer);
-            original.speed = speed;
-            original.lifeTime = lifeTime;
+            original.currentLifeTime = status.LifeTime;
+            original.status = status;
             original.objectPool = objectPool;
 
             return original;

@@ -15,10 +15,7 @@ namespace Quant
         private Bullet bullet;
 
         [SerializeField]
-        private float speed;
-
-        [SerializeField]
-        private float lifeTime;
+        private BulletStatus status;
 
         [SerializeField]
         private float coolTime;
@@ -50,9 +47,8 @@ namespace Quant
             this.bullet.Spawn(
                 this.cachedTransform.position,
                 this.cachedTransform.rotation,
-                this.speed,
-                this.lifeTime,
-                Layers.GetBulletLayerId((Layers.Id)this.gameObject.layer)
+                Layers.GetBulletLayerId((Layers.Id)this.gameObject.layer),
+                this.status
                 );
         }
     }
