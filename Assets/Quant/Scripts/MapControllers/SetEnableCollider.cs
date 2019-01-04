@@ -24,14 +24,17 @@ namespace Quant.MapControllers
         public class Parameter
         {
             [SerializeField]
-            private Collider target = null;
+            private GameObject target = null;
 
             [SerializeField]
             private bool isEnable = false;
 
             public void Invoke()
             {
-                this.target.enabled = this.isEnable;
+                foreach(var c in this.target.GetComponents<Collider>())
+                {
+                    c.enabled = this.isEnable;
+                }
             }
         }
     }
