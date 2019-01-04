@@ -16,6 +16,9 @@ namespace Quant
         private ActorSpawnParameter[] actorSpawnParameters = null;
 
         [SerializeField]
+        private float initialInterval = 0.0f;
+
+        [SerializeField]
         private float interval = 1.0f;
 
         /// <summary>
@@ -56,7 +59,7 @@ namespace Quant
             }
 
             this.isStart = true;
-            this.timer = this.interval;
+            this.timer = this.initialInterval;
             this.UpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) => _this.UpdateSpawn());
         }
