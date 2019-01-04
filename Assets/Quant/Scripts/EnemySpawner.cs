@@ -13,7 +13,7 @@ namespace Quant
         protected void Spawn(ActorSpawnParameter parameter, Vector3 position, Quaternion rotation)
         {
             var actor = parameter.Spawn(position, rotation, Layers.Id.Enemy);
-            Broker.Global.Publish(SpawnedEnemyActor.Get(actor));
+            Broker.Global.Publish(SpawnedEnemyActor.Get(actor, this.gameObject));
         }
 
         protected void Spawn(ActorSpawnParameter parameter, Transform transform)
