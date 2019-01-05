@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using Quant.Events;
+using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -31,6 +32,17 @@ namespace Quant
         public void Setup(ActorStatus status)
         {
             this.StatusController = new ActorStatusController(this, status);
+        }
+
+        public void ForceDead()
+        {
+            if(this.StatusController.IsDead)
+            {
+                return;
+            }
+
+            Destroy(this.gameObject);
+            this.Broker.Publish(DiedActor.Get());
         }
     }
 }

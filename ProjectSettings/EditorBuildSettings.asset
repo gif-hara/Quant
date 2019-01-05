@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Quant/Scenes/Maps/1000.unity
+    guid: e894b21473f2c1649b2f898b76e0c26f
+  - enabled: 1
     path: Assets/Quant/Scenes/Maps/0000.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
