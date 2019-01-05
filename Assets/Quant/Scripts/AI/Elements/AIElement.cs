@@ -17,6 +17,8 @@ namespace Quant.AIControllers
         /// <summary>
         /// AIが終了した際の処理
         /// </summary>
-        public abstract void Exit();
+        public virtual void Exit()
+        {
+        }
     }
 }

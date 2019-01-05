@@ -14,18 +14,19 @@ namespace Quant.AIControllers
     {
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
-            Debug.Log(owner);
             var agent = owner.GetComponent<NavMeshAgent>();
+            agent.updatePosition = false;
+            agent.updateRotation = false;
             owner.UpdateAsObservable()
-                .SubscribeWithState2(this, agent, (_, _this, _agent) =>
+                .SubscribeWithState3(this, owner, agent, (_, _this, _owner, _agent) =>
                 {
                     _agent.SetDestination(GameEnvironment.Instance.Player.CachedTransform.position);
+                    var velocity = (_agent.nextPosition - _owner.CachedTransform.position).normalized;
+                    owner.TransformController.Move(velocity * _owner.StatusController.MoveSpeed);
+                    owner.AnimationController.SetMove(velocity);
+                    owner.TransformController.RotateImmediate(Quaternion.LookRotation(Vector3.Scale(velocity, new Vector3(1, 0, 1)), Vector3.up));
                 })
                 .AddTo(disposables);
-        }
-
-        public override void Exit()
-        {
         }
     }
 }
