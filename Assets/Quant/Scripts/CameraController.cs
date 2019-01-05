@@ -12,6 +12,11 @@ namespace Quant
     /// </summary>
     public sealed class CameraController : MonoBehaviour
     {
+        private Vector3 currentPosition = Vector3.zero;
+
+        [SerializeField]
+        private float positionSmoothDamp = 1.0f;
+
         private void Awake()
         {
             Broker.Global.Receive<SpawnedPlayerActor>()
@@ -25,7 +30,7 @@ namespace Quant
                 .SubscribeWithState2(this, actor, (_, _this, _actor) =>
                 {
                     var cameraman = Cameraman.Instance;
-                    cameraman.Position = _actor.transform.position;
+                    cameraman.Position = Vector3.SmoothDamp(cameraman.Position, _actor.transform.position, ref _this.currentPosition, _this.positionSmoothDamp);
                 });
         }
     }
