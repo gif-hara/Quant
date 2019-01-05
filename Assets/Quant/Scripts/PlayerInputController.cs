@@ -31,7 +31,7 @@ namespace Quant
                 {
                     var h = Input.GetAxis("MoveX");
                     var v = Input.GetAxis("MoveY");
-                    var cameraTransform = Cameraman.Instance.Camera.transform;
+                    var cameraTransform = GameEnvironment.Instance.Cameraman.Camera.transform;
                     var cameraForward = Vector3.Scale(cameraTransform.forward, new Vector3(1.0f, 0.0f, 1.0f));
                     var velocity = ((cameraForward * v) + (cameraTransform.right * h)).normalized;
                     a.TransformController.Move(velocity * a.StatusController.MoveSpeed);
@@ -52,7 +52,7 @@ namespace Quant
                         return;
                     }
 
-                    var cameraTransform = Cameraman.Instance.Camera.transform;
+                    var cameraTransform = GameEnvironment.Instance.Cameraman.Camera.transform;
                     var cameraForward = Vector3.Scale(cameraTransform.forward, new Vector3(1.0f, 0.0f, 1.0f));
                     var direction = ((cameraForward * v) + (cameraTransform.right * h)).normalized;
                     a.TransformController.RotateImmediate(Quaternion.LookRotation(new Vector3(direction.x, 0.0f, direction.z), Vector3.up));

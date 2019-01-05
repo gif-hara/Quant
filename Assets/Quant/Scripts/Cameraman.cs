@@ -23,8 +23,6 @@ namespace Quant
         [SerializeField]
         private Camera controllerdCamera;
 
-        public static Cameraman Instance { get; private set; }
-
         public Vector3 Position { get { return this.root.position; } set { this.root.position = value; } }
 
         public Quaternion Pivot { get { return this.pivot.localRotation; } set { this.pivot.localRotation = value; } }
@@ -37,14 +35,18 @@ namespace Quant
 
         private void Awake()
         {
-            Assert.IsNull(Instance);
-            Instance = this;
+            GameEnvironment.Instance.Cameraman = this;
         }
 
         private void OnDestroy()
         {
-            Assert.IsNotNull(Instance);
-            Instance = null;
+            var gameEnvironment = GameEnvironment.Instance;
+            if(gameEnvironment == null)
+            {
+                return;
+            }
+
+            gameEnvironment.Cameraman = null;
         }
     }
 }
