@@ -69,4 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882473ebfff7d9448b06b8071f2be010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionSmoothDamp: 0.1
+  positionSmoothDamp:
+    smoothTime: 0.1
+  pivotSmoothDamp:
+    smoothTime: 0.2
+  distanceSmoothDamp:
+    smoothTime: 0.2
+  rigSmoothDamp:
+    smoothTime: 0.2

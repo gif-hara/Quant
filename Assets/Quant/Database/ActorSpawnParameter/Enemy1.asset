@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5689d1cdadd433441bc8024a7a15c339, type: 3}
-  m_Name: Enemy0
+  m_Script: {fileID: 11500000, guid: 92ce874894964ac4398617b70f4fc5bd, type: 3}
+  m_Name: Enemy1
   m_EditorClassIdentifier: 
-  hitPoint: 50
-  moveSpeed: 3
+  actor: {fileID: 1825275797, guid: a438b90c906bfba4ba43a22c4e677f23, type: 3}
+  actorStatus: {fileID: 11400000, guid: 8142be4de5bcadc44a7536fa6adacc7e, type: 2}
+  attachObjects: []
