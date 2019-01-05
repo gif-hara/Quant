@@ -17,7 +17,6 @@ namespace Quant.MapControllers
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other);
             if(this.includeLayerMask.IsIncluded(other.gameObject))
             {
                 foreach(var e in this.events)
