@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actor: {fileID: 1825275797, guid: 27b169786ac2c4310bb5fef03c05fbb9, type: 3}
   actorStatus: {fileID: 11400000, guid: d238b7565cccb6e4983c04c9c88a9bb1, type: 2}
-  attachObjects: []
+  attachObjects:
+  - {fileID: 6116943398908985182, guid: 7d9a80a7be282bd41a3ebfcc09d9a780, type: 3}

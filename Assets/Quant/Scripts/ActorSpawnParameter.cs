@@ -29,8 +29,7 @@ namespace Quant
             actor.Setup(this.actorStatus);
             foreach (var o in this.attachObjects)
             {
-                var child = Instantiate(o);
-                child.transform.SetParent(actor.transform, false);
+                var child = Instantiate(o, actor.CachedTransform);
             }
             actor.gameObject.SetLayerRecursive(layerId);
 

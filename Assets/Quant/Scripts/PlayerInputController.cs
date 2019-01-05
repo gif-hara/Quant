@@ -5,6 +5,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Assertions;
 using HK.Framework.Extensions;
+using UnityEngine.AI;
 
 namespace Quant
 {
@@ -18,6 +19,7 @@ namespace Quant
             Broker.Global.Receive<SpawnedPlayerActor>()
                 .SubscribeWithState(this, (x, _this) =>
                 {
+                    x.Actor.GetComponent<NavMeshAgent>().enabled = false;
                     _this.SetupMove(x.Actor);
                     _this.SetupRotation(x.Actor);
                 })

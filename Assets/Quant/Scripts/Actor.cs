@@ -18,11 +18,14 @@ namespace Quant
 
         public IMessageBroker Broker { get; private set; }
 
+        public Transform CachedTransform { get; private set; }
+
         void Awake()
         {
             this.Broker = new MessageBroker();
             this.TransformController = this.GetComponent<ActorTransformController>();
             this.AnimationController = this.GetComponent<ActorAnimationController>();
+            this.CachedTransform = this.transform;
         }
 
         public void Setup(ActorStatus status)

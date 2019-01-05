@@ -24,10 +24,13 @@ namespace Quant
 
         void FixedUpdate()
         {
-            this.characterController.SimpleMove(this.velocity);
-            this.velocity = Vector3.zero;
+            if(this.velocity != Vector3.zero)
+            {
+                this.characterController.SimpleMove(this.velocity);
+                this.velocity = Vector3.zero;
+            }
 
-            if(this.rotate != Quaternion.identity)
+            if (this.rotate != Quaternion.identity)
             {
                 this.cachedTransform.localRotation = this.rotate;
                 this.rotate = Quaternion.identity;
