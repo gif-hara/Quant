@@ -1,5 +1,6 @@
 ﻿using HK.Framework.EventSystems;
 using Quant.Events;
+using System;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -12,10 +13,17 @@ namespace Quant
     /// </summary>
     public sealed class CameraController : MonoBehaviour
     {
-        private Vector3 currentPosition = Vector3.zero;
+        [SerializeField]
+        private Vector3Property positionSmoothDamp;
 
         [SerializeField]
-        private float positionSmoothDamp = 1.0f;
+        private Vector3Property pivotSmoothDamp;
+
+        [SerializeField]
+        private FloatProperty distanceSmoothDamp;
+
+        [SerializeField]
+        private Vector3Property rigSmoothDamp;
 
         private Transform lookAtTarget;
 
@@ -36,13 +44,40 @@ namespace Quant
             this.FixedUpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) =>
                 {
-                    if(_this.lookAtTarget == null)
-                    {
-                        return;
-                    }
-                    var cameraman = GameEnvironment.Instance.Cameraman;
-                    cameraman.Position = Vector3.SmoothDamp(cameraman.Position, _this.lookAtTarget.position, ref _this.currentPosition, _this.positionSmoothDamp);
+                    _this.UpdatePosition();
+                    _this.UpdatePivot();
+                    _this.UpdateDistance();
+                    _this.UpdateRig();
                 });
+        }
+
+        private void UpdatePosition()
+        {
+            if (this.lookAtTarget == null)
+            {
+                return;
+            }
+            var cameraman = GameEnvironment.Instance.Cameraman;
+            this.positionSmoothDamp.Target = this.lookAtTarget.position;
+            cameraman.Position = this.positionSmoothDamp.SmoothDamp(cameraman.Position);
+        }
+
+        private void UpdatePivot()
+        {
+            var cameraman = GameEnvironment.Instance.Cameraman;
+            cameraman.Pivot = Quaternion.Euler(this.pivotSmoothDamp.SmoothDamp(cameraman.Pivot.eulerAngles));
+        }
+
+        private void UpdateDistance()
+        {
+            var cameraman = GameEnvironment.Instance.Cameraman;
+            cameraman.Distance = this.distanceSmoothDamp.SmoothDamp(cameraman.Distance);
+        }
+
+        private void UpdateRig()
+        {
+            var cameraman = GameEnvironment.Instance.Cameraman;
+            cameraman.Rig = Quaternion.Euler(this.rigSmoothDamp.SmoothDamp(cameraman.Rig.eulerAngles));
         }
 
         private void ApplyOverrideProperty(OverrideCameraProperty property)
@@ -54,15 +89,46 @@ namespace Quant
             }
             if(property.Pivot.CanApply)
             {
-                cameraman.Pivot = Quaternion.Euler(property.Pivot.Value);
+                this.pivotSmoothDamp.Target = property.Pivot.Value;
             }
             if(property.Distance.CanApply)
             {
-                cameraman.Distance = property.Distance.Value;
+                this.distanceSmoothDamp.Target = property.Distance.Value;
             }
             if(property.Rig.CanApply)
             {
-                cameraman.Rig = Quaternion.Euler(property.Rig.Value);
+                this.rigSmoothDamp.Target = property.Rig.Value;
+            }
+        }
+
+        [Serializable]
+        public abstract class SmoothDampProperty<T>
+        {
+            protected T currentVelocity;
+
+            public T Target { get; set; }
+
+            [SerializeField]
+            protected float smoothTime;
+
+            public abstract T SmoothDamp(T current);
+        }
+
+        [Serializable]
+        public class Vector3Property : SmoothDampProperty<Vector3>
+        {
+            public override Vector3 SmoothDamp(Vector3 current)
+            {
+                return Vector3.SmoothDamp(current, this.Target, ref this.currentVelocity, this.smoothTime);
+            }
+        }
+
+        [Serializable]
+        public class FloatProperty : SmoothDampProperty<float>
+        {
+            public override float SmoothDamp(float current)
+            {
+                return Mathf.SmoothDamp(current, this.Target, ref this.currentVelocity, this.smoothTime);
             }
         }
     }
