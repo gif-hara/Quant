@@ -31,7 +31,10 @@ namespace Quant.MapControllers
             foreach(var e in this.targets)
             {
                 e.StartSpawn();
-                totalSpawnNumber = e.TotalSpawnNumber;
+                if(!e.IsLoop)
+                {
+                    totalSpawnNumber += e.TotalSpawnNumber;
+                }
             }
 
             this.remainEnemyCount = totalSpawnNumber;

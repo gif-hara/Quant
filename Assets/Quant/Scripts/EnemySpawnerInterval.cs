@@ -32,6 +32,13 @@ namespace Quant
         private int limitAliveEnemyNumber = 0;
 
         /// <summary>
+        /// <see cref="actorSpawnParameters"/>をループさせて生成するか
+        /// </summary>
+        [SerializeField]
+        private bool isLoop = false;
+        public bool IsLoop => this.isLoop;
+
+        /// <summary>
         /// 生成した敵が生存している数
         /// </summary>
         private int currentAliveEnemyCount = 0;
@@ -81,6 +88,11 @@ namespace Quant
                 actor.Broker.Receive<DiedActor>()
                     .SubscribeWithState(this, (_, _this) => _this.currentAliveEnemyCount--)
                     .AddTo(this);
+
+                if(this.isLoop && this.currentSpawnId >= this.actorSpawnParameters.Length)
+                {
+                    this.currentSpawnId = 0;
+                }
             }
         }
 
