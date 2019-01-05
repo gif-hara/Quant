@@ -71,7 +71,7 @@ namespace Quant
         private void OnCollision(Collider other)
         {
             this.objectPool.Return(this);
-            var actor = other.GetComponent<Actor>();
+            var actor = other.GetComponentInParent<Actor>();
             if(actor == null)
             {
                 return;
