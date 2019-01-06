@@ -11,14 +11,14 @@ namespace Quant
     {
         public float Speed => this.speed;
         [SerializeField]
-        private float speed;
+        private float speed = 1.0f;
 
         public float LifeTime => this.lifeTime;
         [SerializeField]
-        private float lifeTime;
+        private float lifeTime = 1.0f;
 
         public int Power => this.power;
         [SerializeField]
-        private int power;
+        private int power = 0;
     }
 }

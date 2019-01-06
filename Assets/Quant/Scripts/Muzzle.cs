@@ -12,17 +12,17 @@ namespace Quant
     public sealed class Muzzle : MonoBehaviour
     {
         [SerializeField]
-        private Bullet bullet;
+        private Bullet bullet = null;
 
         [SerializeField]
-        private BulletStatus status;
+        private BulletStatus status = null;
 
         [SerializeField]
-        private float coolTime;
+        private float coolTime = 0.0f;
 
-        private Transform cachedTransform;
+        private Transform cachedTransform = null;
 
-        private float currentCoolTime;
+        private float currentCoolTime = 0.0f;
 
         void Awake()
         {

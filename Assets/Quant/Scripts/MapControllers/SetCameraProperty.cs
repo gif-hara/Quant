@@ -12,7 +12,7 @@ namespace Quant.MapControllers
     public sealed class SetCameraProperty : MapEvent
     {
         [SerializeField]
-        private OverrideCameraProperty property;
+        private OverrideCameraProperty property = null;
 
         public override void Invoke()
         {

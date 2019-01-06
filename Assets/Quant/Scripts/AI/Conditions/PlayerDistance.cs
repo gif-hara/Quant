@@ -19,10 +19,10 @@ namespace Quant.AIControllers
         }
 
         [SerializeField]
-        private ConditionType type;
+        private ConditionType type = ConditionType.Greater;
 
         [SerializeField]
-        private float distance;
+        private float distance = 1.0f;
 
         public override bool Evalute(Actor owner)
         {

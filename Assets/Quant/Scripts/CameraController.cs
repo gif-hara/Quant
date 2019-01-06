@@ -14,16 +14,16 @@ namespace Quant
     public sealed class CameraController : MonoBehaviour
     {
         [SerializeField]
-        private Vector3Property positionSmoothDamp;
+        private Vector3Property positionSmoothDamp = null;
 
         [SerializeField]
-        private Vector3Property pivotSmoothDamp;
+        private Vector3Property pivotSmoothDamp = null;
 
         [SerializeField]
-        private FloatProperty distanceSmoothDamp;
+        private FloatProperty distanceSmoothDamp = null;
 
         [SerializeField]
-        private Vector3Property rigSmoothDamp;
+        private Vector3Property rigSmoothDamp = null;
 
         private Transform lookAtTarget;
 

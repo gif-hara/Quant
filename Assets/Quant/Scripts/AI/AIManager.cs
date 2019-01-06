@@ -12,7 +12,7 @@ namespace Quant.AIControllers
     public sealed class AIManager : MonoBehaviour
     {
         [SerializeField]
-        private Bundle[] bundles;
+        private Bundle[] bundles = null;
 
         private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -50,7 +50,7 @@ namespace Quant.AIControllers
         public class Bundle
         {
             [SerializeField]
-            private AIElement element;
+            private AIElement element = null;
             public AIElement Element => this.element;
 
             [SerializeField]

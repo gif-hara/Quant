@@ -11,7 +11,7 @@ namespace Quant
     public sealed class PlayerSpawner : MonoBehaviour
     {
         [SerializeField]
-        private ActorSpawnParameter parameter;
+        private ActorSpawnParameter parameter = null;
 
         void Start()
         {

@@ -10,10 +10,10 @@ namespace Quant.MapControllers
     public sealed class InvokeMapEventOnTriggerEnter : MonoBehaviour
     {
         [SerializeField]
-        private LayerMask includeLayerMask;
+        private LayerMask includeLayerMask = new LayerMask();
 
         [SerializeField]
-        private MapEvent[] events;
+        private MapEvent[] events = null;
 
         private void OnTriggerEnter(Collider other)
         {

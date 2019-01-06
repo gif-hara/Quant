@@ -9,19 +9,19 @@ namespace Quant
     public sealed class Cameraman : MonoBehaviour
     {
         [SerializeField]
-        private Transform root;
+        private Transform root = null;
 
         [SerializeField]
-        private Transform pivot;
+        private Transform pivot = null;
 
         [SerializeField]
-        private Transform distance;
+        private Transform distance = null;
 
         [SerializeField]
-        private Transform rig;
+        private Transform rig = null;
 
         [SerializeField]
-        private Camera controllerdCamera;
+        private Camera controllerdCamera = null;
 
         public Vector3 Position { get { return this.root.position; } set { this.root.position = value; } }
 

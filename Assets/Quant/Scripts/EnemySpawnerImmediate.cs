@@ -9,7 +9,7 @@ namespace Quant
     public sealed class EnemySpawnerImmediate : EnemySpawner
     {
         [SerializeField]
-        private ActorSpawnParameter parameter;
+        private ActorSpawnParameter parameter = null;
 
         void Start()
         {
