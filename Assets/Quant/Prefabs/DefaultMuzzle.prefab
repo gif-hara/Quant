@@ -46,3 +46,4 @@ MonoBehaviour:
   bullet: {fileID: 7624732773748459336, guid: 77113953dc7c240daa9e4390d080a563, type: 3}
   status: {fileID: 11400000, guid: 5c57e8f7365aabc41a7770d3dce3ca3b, type: 2}
   coolTime: 0.1
+  effect: {fileID: 1511438824048637137, guid: c888f0c922d622147bbdbe2ca794142b, type: 3}

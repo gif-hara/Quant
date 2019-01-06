@@ -27,6 +27,7 @@ namespace Quant
             this.TransformController = this.GetComponent<ActorTransformController>();
             this.AnimationController = this.GetComponent<ActorAnimationController>();
             this.CachedTransform = this.transform;
+            ActorEffectController.Apply(this);
         }
 
         public void Setup(ActorStatus status)

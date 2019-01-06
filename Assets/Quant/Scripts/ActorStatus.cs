@@ -24,11 +24,16 @@ namespace Quant
         [SerializeField]
         private float moveSpeed = 1.0f;
 
+        public EffectPool DeadEffect => this.deadEffect;
+        [SerializeField]
+        private EffectPool deadEffect = null;
+
         public ActorStatus Clone()
         {
             var clone = CreateInstance<ActorStatus>();
             clone.hitPoint = this.hitPoint;
             clone.moveSpeed = this.moveSpeed;
+            clone.deadEffect = this.deadEffect;
 
             return clone;
         }

@@ -20,5 +20,9 @@ namespace Quant
         public int Power => this.power;
         [SerializeField]
         private int power = 0;
+
+        public EffectPool HitEffect => this.hitEffect;
+        [SerializeField]
+        private EffectPool hitEffect = null;
     }
 }

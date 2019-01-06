@@ -20,6 +20,9 @@ namespace Quant
         [SerializeField]
         private float coolTime = 0.0f;
 
+        [SerializeField]
+        private EffectPool effect = null;
+
         private Transform cachedTransform = null;
 
         private float currentCoolTime = 0.0f;
@@ -49,6 +52,11 @@ namespace Quant
                 this.cachedTransform.rotation,
                 Layers.GetBulletLayerId((Layers.Id)this.gameObject.layer),
                 this.status
+                );
+            this.effect.Spawn(
+                this.cachedTransform.position,
+                this.cachedTransform.rotation,
+                1.0f
                 );
         }
     }

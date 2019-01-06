@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 namespace Quant.AIControllers
 {
     /// <summary>
-    /// 
+    /// プレイヤーを追いかけるAI
     /// </summary>
     [CreateAssetMenu(menuName = "Quant/AI/Element/ChasePlayer")]
     public sealed class ChasePlayer : AIElement

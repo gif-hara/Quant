@@ -24,6 +24,8 @@ namespace Quant
 
         public BulletStatus Status { get; private set; }
 
+        private bool isHit = false;
+
         void Awake()
         {
             this.cachedTransform = this.transform;
@@ -64,13 +66,21 @@ namespace Quant
             original.currentLifeTime = status.LifeTime;
             original.Status = status;
             original.objectPool = objectPool;
+            original.isHit = false;
 
             return original;
         }
 
         private void OnCollision(Collider other)
         {
+            if(this.isHit)
+            {
+                return;
+            }
+
+            this.isHit = true;
             this.objectPool.Return(this);
+            this.Status.HitEffect.Spawn(this.cachedTransform.position, this.cachedTransform.rotation, 1.0f);
             var actor = other.GetComponentInParent<Actor>();
             if(actor == null)
             {
