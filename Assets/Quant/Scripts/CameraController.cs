@@ -14,16 +14,16 @@ namespace Quant
     public sealed class CameraController : MonoBehaviour
     {
         [SerializeField]
-        private Vector3Property positionSmoothDamp = null;
+        private SmoothDamp.Vector3 positionSmoothDamp = null;
 
         [SerializeField]
-        private Vector3Property pivotSmoothDamp = null;
+        private SmoothDamp.Vector3 pivotSmoothDamp = null;
 
         [SerializeField]
-        private FloatProperty distanceSmoothDamp = null;
+        private SmoothDamp.Float distanceSmoothDamp = null;
 
         [SerializeField]
-        private Vector3Property rigSmoothDamp = null;
+        private SmoothDamp.Vector3 rigSmoothDamp = null;
 
         private Transform lookAtTarget;
 
@@ -98,37 +98,6 @@ namespace Quant
             if(property.Rig.CanApply)
             {
                 this.rigSmoothDamp.Target = property.Rig.Value;
-            }
-        }
-
-        [Serializable]
-        public abstract class SmoothDampProperty<T>
-        {
-            protected T currentVelocity;
-
-            public T Target { get; set; }
-
-            [SerializeField]
-            protected float smoothTime;
-
-            public abstract T SmoothDamp(T current);
-        }
-
-        [Serializable]
-        public class Vector3Property : SmoothDampProperty<Vector3>
-        {
-            public override Vector3 SmoothDamp(Vector3 current)
-            {
-                return Vector3.SmoothDamp(current, this.Target, ref this.currentVelocity, this.smoothTime);
-            }
-        }
-
-        [Serializable]
-        public class FloatProperty : SmoothDampProperty<float>
-        {
-            public override float SmoothDamp(float current)
-            {
-                return Mathf.SmoothDamp(current, this.Target, ref this.currentVelocity, this.smoothTime);
             }
         }
     }

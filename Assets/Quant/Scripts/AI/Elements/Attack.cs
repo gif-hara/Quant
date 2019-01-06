@@ -1,5 +1,6 @@
 ﻿using System;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -17,9 +18,21 @@ namespace Quant.AIControllers
         [SerializeField]
         private GameObject attackObject;
 
+        [SerializeField]
+        private SmoothDamp.Vector3 rotationSmoothDamp;
+
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
             this.StartAttack(owner, disposables);
+            owner.UpdateAsObservable()
+                .SubscribeWithState2(owner, new SmoothDamp.Vector3(this.rotationSmoothDamp), (_, _owner, r) =>
+                {
+                    var player = GameEnvironment.Instance.Player.CachedTransform;
+                    r.Target = Quaternion.LookRotation(player.position - _owner.CachedTransform.position, Vector3.up).eulerAngles;
+                    _owner.TransformController.RotateImmediate(Quaternion.Euler(r.SmoothDamp(_owner.CachedTransform.rotation.eulerAngles)));
+                })
+                .AddTo(owner)
+                .AddTo(disposables);
         }
 
         private void StartAttack(Actor owner, CompositeDisposable disposables)
