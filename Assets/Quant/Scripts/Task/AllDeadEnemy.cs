@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// 全ての敵を強制的に死亡させるマップイベント
+    /// 全ての敵を強制的に死亡させるタスク
     /// </summary>
-    public sealed class AllDeadEnemy : MapEvent
+    public sealed class AllDeadEnemy : TaskMonoBehavior
     {
         public override void Invoke()
         {

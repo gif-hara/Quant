@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// 対象のゲームオブジェクトを死亡させるマップイベント
+    /// 対象のゲームオブジェクトを死亡させるタスク
     /// </summary>
-    public sealed class DestroyGameObject : MapEvent
+    public sealed class DestroyGameObject : TaskMonoBehavior
     {
         [SerializeField]
         private GameObject[] targets = null;

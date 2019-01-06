@@ -4,12 +4,12 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// <see cref="EnemySpawnerInterval"/>の生成を開始するマップイベント
+    /// <see cref="EnemySpawnerInterval"/>の生成を開始するタスク
     /// </summary>
-    public sealed class InvokeEnemySpawnerInterval : MapEvent
+    public sealed class InvokeEnemySpawnerInterval : TaskMonoBehavior
     {
         [SerializeField]
         private EnemySpawnerInterval[] targets = null;
@@ -18,7 +18,7 @@ namespace Quant.MapControllers
         /// 生成した敵がすべて倒された際のイベント
         /// </summary>
         [SerializeField]
-        private MapEvent[] allDeadEnemyEvents = null;
+        private TaskMonoBehavior[] allDeadEnemyEvents = null;
 
         /// <summary>
         /// 残っている敵の数

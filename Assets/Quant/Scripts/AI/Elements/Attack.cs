@@ -23,13 +23,14 @@ namespace Quant.AIControllers
 
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
+            owner.AnimationController.SetMove(Vector3.zero);
             this.StartAttack(owner, disposables);
             owner.UpdateAsObservable()
                 .SubscribeWithState2(owner, new SmoothDamp.Vector3(this.rotationSmoothDamp), (_, _owner, r) =>
                 {
                     var player = GameEnvironment.Instance.Player.CachedTransform;
                     r.Target = Quaternion.LookRotation(player.position - _owner.CachedTransform.position, Vector3.up).eulerAngles;
-                    _owner.TransformController.RotateImmediate(Quaternion.Euler(r.SmoothDamp(_owner.CachedTransform.rotation.eulerAngles)));
+                    _owner.TransformController.RotateImmediate(Quaternion.Euler(r.SmoothDampAngle(_owner.CachedTransform.rotation.eulerAngles)));
                 })
                 .AddTo(owner)
                 .AddTo(disposables);

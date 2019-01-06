@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant
+namespace Quant.Task
 {
     /// <summary>
     /// <see cref="MonoBehaviour"/>を継承した<see cref="Task"/>

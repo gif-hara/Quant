@@ -38,6 +38,15 @@ namespace Quant
             {
                 return UnityEngine.Vector3.SmoothDamp(current, this.Target, ref this.currentVelocity, this.smoothTime);
             }
+
+            public UnityEngine.Vector3 SmoothDampAngle(UnityEngine.Vector3 current)
+            {
+                return new UnityEngine.Vector3(
+                    Mathf.SmoothDampAngle(current.x, this.Target.x, ref this.currentVelocity.x, this.smoothTime),
+                    Mathf.SmoothDampAngle(current.y, this.Target.y, ref this.currentVelocity.y, this.smoothTime),
+                    Mathf.SmoothDampAngle(current.z, this.Target.z, ref this.currentVelocity.z, this.smoothTime)
+                    );
+            }
         }
 
         [Serializable]

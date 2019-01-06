@@ -4,12 +4,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// カメラのプロパティを設定するマップイベント
+    /// カメラのプロパティを設定するタスク
     /// </summary>
-    public sealed class SetCameraProperty : MapEvent
+    public sealed class SetCameraProperty : TaskMonoBehavior
     {
         [SerializeField]
         private OverrideCameraProperty property = null;

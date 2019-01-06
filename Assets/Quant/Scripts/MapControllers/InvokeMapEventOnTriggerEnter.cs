@@ -1,11 +1,12 @@
 ﻿using HK.Framework.Extensions;
+using Quant.Task;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant
 {
     /// <summary>
-    /// OnTriggerEnterに反応してマップイベントを実行するクラス
+    /// OnTriggerEnterに反応してタスクを実行するクラス
     /// </summary>
     public sealed class InvokeMapEventOnTriggerEnter : MonoBehaviour
     {
@@ -13,7 +14,7 @@ namespace Quant.MapControllers
         private LayerMask includeLayerMask = new LayerMask();
 
         [SerializeField]
-        private MapEvent[] events = null;
+        private TaskMonoBehavior[] events = null;
 
         private void OnTriggerEnter(Collider other)
         {

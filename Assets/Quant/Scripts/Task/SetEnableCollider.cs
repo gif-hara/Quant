@@ -2,12 +2,12 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// 対象のゲームオブジェクトのアクティブフラグを設定するマップイベント
+    /// 対象のコライダーのアクティブフラグを設定するタスク
     /// </summary>
-    public sealed class SetActiveGameObject : MapEvent
+    public sealed class SetEnableCollider : TaskMonoBehavior
     {
         [SerializeField]
         private Parameter[] parameters = null;
@@ -27,11 +27,14 @@ namespace Quant.MapControllers
             private GameObject target = null;
 
             [SerializeField]
-            private bool isActive = false;
+            private bool isEnable = false;
 
             public void Invoke()
             {
-                this.target.SetActive(this.isActive);
+                foreach(var c in this.target.GetComponents<Collider>())
+                {
+                    c.enabled = this.isEnable;
+                }
             }
         }
     }

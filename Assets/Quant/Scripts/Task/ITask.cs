@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant
+namespace Quant.Task
 {
     /// <summary>
     /// 様々な処理を実行するための基底クラス

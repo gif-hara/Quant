@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63816241e62ae5b4899e66876f42110c, type: 3}
-  m_Name: Enemy0
+  m_Name: AttackEnemy0
   m_EditorClassIdentifier: 
   waitAttack: 1
   attackObject: {fileID: 7643010640330265810, guid: a9e34bcd9e86fa04898692d98e55bf6c,
     type: 3}
+  rotationSmoothDamp:
+    smoothTime: 0.2

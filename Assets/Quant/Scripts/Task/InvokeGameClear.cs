@@ -3,12 +3,12 @@ using Quant.Events;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// ゲームクリアを実行するマップイベント
+    /// ゲームクリアを実行するタスク
     /// </summary>
-    public sealed class InvokeGameClear : MapEvent
+    public sealed class InvokeGameClear : TaskMonoBehavior
     {
         public override void Invoke()
         {

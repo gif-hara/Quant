@@ -3,12 +3,12 @@ using Quant.Events;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Quant.MapControllers
+namespace Quant.Task
 {
     /// <summary>
-    /// カメラが追従するオブジェクトをプレイヤーに戻すマップイベント
+    /// カメラが追従するオブジェクトをプレイヤーに戻すタスク
     /// </summary>
-    public sealed class SetCameraPropertyRevertLookAt : MapEvent
+    public sealed class SetCameraPropertyRevertLookAt : TaskMonoBehavior
     {
         public override void Invoke()
         {
