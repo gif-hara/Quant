@@ -23385,6 +23385,7 @@ GameObject:
   - component: {fileID: 19800006}
   - component: {fileID: 19900006}
   - component: {fileID: 6494960484660883057}
+  - component: {fileID: 114486425295945526}
   m_Layer: 0
   m_Name: WFX_ExplosiveSmoke Big Alt
   m_TagString: Untagged
@@ -28095,5 +28096,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca97883ece6798c49baee360b1b16411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114486425295945526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d9c7eb607af1fd4aa0e15f52cc0543b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Enemy0
   m_EditorClassIdentifier: 
   waitAttack: 1
-  attackObject: {fileID: 0}
+  attackObject: {fileID: 7643010640330265810, guid: a9e34bcd9e86fa04898692d98e55bf6c,
+    type: 3}

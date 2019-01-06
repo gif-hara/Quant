@@ -45,3 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bundles:
   - element: {fileID: 11400000, guid: 5e4859137e7c39840bd3a008c9cbc615, type: 2}
+    conditionBundles:
+    - condition: {fileID: 11400000, guid: be35ea8472acd524c9f999d32ecf0486, type: 2}
+      nextBundleId: 1
+  - element: {fileID: 11400000, guid: 9dd001f038c89e649b880fbbef024cd0, type: 2}
+    conditionBundles:
+    - condition: {fileID: 11400000, guid: 43ddd6cc5c35f56439c6a4d848f3e833, type: 2}
+      nextBundleId: 0

@@ -6,8 +6,7 @@ namespace Quant.MapControllers
     /// <summary>
     /// マップに対してイベントを実行する抽象クラス
     /// </summary>
-    public abstract class MapEvent : MonoBehaviour
+    public abstract class MapEvent : TaskMonoBehavior
     {
-        public abstract void Invoke();
     }
 }
