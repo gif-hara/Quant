@@ -49,10 +49,11 @@ namespace Quant
 
         public void SetMove(Vector3 velocity)
         {
+            const float dampTime = 0.1f;
             var rotation = this.cachedTransform.rotation * Quaternion.Euler(0.0f, 0.0f, 180.0f);
             velocity = rotation * velocity;
-            this.animator.SetFloat(Parameter.Forward, velocity.z);
-            this.animator.SetFloat(Parameter.Right, -velocity.x);
+            this.animator.SetFloat(Parameter.Forward, velocity.z, dampTime, Time.deltaTime);
+            this.animator.SetFloat(Parameter.Right, -velocity.x, dampTime, Time.deltaTime);
             this.animator.speed = this.owner.StatusController.MoveAnimationSpeed;
         }
 

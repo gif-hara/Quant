@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ce874894964ac4398617b70f4fc5bd, type: 3}
+  m_Name: Enemy2
+  m_EditorClassIdentifier: 
+  actor: {fileID: 1825275797, guid: 68938acb7da956144b1bd8ae36e50328, type: 3}
+  actorStatus: {fileID: 11400000, guid: ca2bbcadcd8c5d44c805f1f168d06536, type: 2}
+  attachObjects:
+  - {fileID: 6116943398908985182, guid: e2b6c5a6e16dd62429270087f2307d00, type: 3}

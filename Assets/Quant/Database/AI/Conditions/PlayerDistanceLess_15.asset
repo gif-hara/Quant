@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5689d1cdadd433441bc8024a7a15c339, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: 4286d7b5382080640a4ab55083b56558, type: 3}
+  m_Name: PlayerDistanceLess_10
   m_EditorClassIdentifier: 
-  hitPoint: 10
-  moveSpeed: 6
-  deadEffect: {fileID: 6494960484660883057, guid: e0609132424a24844b1d53ad3d704fd9,
-    type: 3}
-  moveAnimationSpeed: 1.6
-  attackAnimationSpeed: 1
+  type: 1
+  distance: 10

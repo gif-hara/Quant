@@ -2,6 +2,7 @@
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 namespace Quant.AIControllers
@@ -51,6 +52,8 @@ namespace Quant.AIControllers
 
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
+            var agent = owner.GetComponent<NavMeshAgent>();
+            agent.isStopped = true;
             owner.AnimationController.SetMove(Vector3.zero);
             this.StartAttack(owner, disposables);
             owner.UpdateAsObservable()

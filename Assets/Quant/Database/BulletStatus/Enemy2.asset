@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5689d1cdadd433441bc8024a7a15c339, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: 677364833f7f5224891a9f08819d0301, type: 3}
+  m_Name: Enemy2
   m_EditorClassIdentifier: 
-  hitPoint: 10
-  moveSpeed: 6
-  deadEffect: {fileID: 6494960484660883057, guid: e0609132424a24844b1d53ad3d704fd9,
+  speed: 13
+  lifeTime: 1.8
+  power: 10
+  penetrateCount: 0
+  hitEffect: {fileID: 1014851587540864414, guid: 5332791ebce075d4a9e56f4581e7fb47,
     type: 3}
-  moveAnimationSpeed: 1.6
-  attackAnimationSpeed: 1

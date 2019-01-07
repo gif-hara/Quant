@@ -17,5 +17,6 @@ MonoBehaviour:
   attackObject: {fileID: 7643010640330265810, guid: 0f65b5bf9c6aca94b8437f4b47e568ba,
     type: 3}
   rotationSmoothDamp:
-    smoothTime: 0.2
+    smoothTime: 99999
   animationId: 0
+  canExitFireCount: 1
