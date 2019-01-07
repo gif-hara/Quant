@@ -23,14 +23,14 @@ namespace Quant.AIControllers
             owner.UpdateAsObservable()
                 .SubscribeWithState3(this, owner, agent, (_, _this, _owner, _agent) =>
                 {
-                    _agent.SetDestination(GameEnvironment.Instance.Player.CachedTransform.position);
+                    _agent.destination = (GameEnvironment.Instance.Player.CachedTransform.position);
                     var velocity = (_agent.nextPosition - _owner.CachedTransform.position);
                     if(velocity.magnitude >= 1.0f)
                     {
                         velocity = velocity.normalized;
-                        owner.TransformController.Move(velocity * _owner.StatusController.MoveSpeed);
-                        owner.TransformController.RotateImmediate(Quaternion.LookRotation(Vector3.Scale(velocity, new Vector3(1, 0, 1)), Vector3.up));
-                        owner.AnimationController.SetMove(velocity);
+                        _owner.TransformController.Move(velocity * _owner.StatusController.MoveSpeed);
+                        _owner.TransformController.RotateImmediate(Quaternion.LookRotation(Vector3.Scale(velocity, new Vector3(1, 0, 1)), Vector3.up));
+                        _owner.AnimationController.SetMove(velocity);
                     }
                 })
                 .AddTo(disposables);
