@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actorSpawnParameters:
-  - {fileID: 11400000, guid: af4e8d160a88d4541bae3d469f18edc6, type: 2}
+  - {fileID: 11400000, guid: 3ee6e9f8cc8e9264c8f3bf4d82704af4, type: 2}
   initialInterval: 0
   interval: 1
   limitAliveEnemyNumber: 1
@@ -1010,7 +1010,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
@@ -1267,7 +1267,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30

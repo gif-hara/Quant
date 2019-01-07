@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1401009800185407558}
   - component: {fileID: 7734389791688703341}
   m_Layer: 0
-  m_Name: Enemy0
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     conditionBundles:
     - condition: {fileID: 11400000, guid: be35ea8472acd524c9f999d32ecf0486, type: 2}
       nextBundleId: 1
-  - element: {fileID: 11400000, guid: 9dd001f038c89e649b880fbbef024cd0, type: 2}
+  - element: {fileID: 11400000, guid: 0149181c5fecb974fb1df803099b22e8, type: 2}
     conditionBundles:
     - condition: {fileID: 11400000, guid: 6bf79f0410708ce4ba3be29962179bcf, type: 2}
       nextBundleId: 0

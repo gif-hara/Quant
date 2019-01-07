@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63816241e62ae5b4899e66876f42110c, type: 3}
   m_Name: AttackEnemy1
   m_EditorClassIdentifier: 
-  waitAttack: 1
+  chargeTime: 1
+  coolTime: 2
   attackObject: {fileID: 7643010640330265810, guid: 0f65b5bf9c6aca94b8437f4b47e568ba,
     type: 3}
   rotationSmoothDamp:
     smoothTime: 0.2
+  animationId: 0
