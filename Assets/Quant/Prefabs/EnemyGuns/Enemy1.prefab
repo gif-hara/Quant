@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7624732773748459336, guid: 77113953dc7c240daa9e4390d080a563, type: 3}
-  status: {fileID: 11400000, guid: e91a047149746374a8b937eeea1a205d, type: 2}
+  status: {fileID: 11400000, guid: c9ee007a1d37eb54b87d7e301d0a7e53, type: 2}
   coolTime: 0
   effect: {fileID: 1511438824048637137, guid: c888f0c922d622147bbdbe2ca794142b, type: 3}
 --- !u!1 &7643010640330265810

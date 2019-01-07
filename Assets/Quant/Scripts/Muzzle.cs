@@ -53,11 +53,15 @@ namespace Quant
                 Layers.GetBulletLayerId((Layers.Id)this.gameObject.layer),
                 this.status
                 );
-            this.effect.Spawn(
-                this.cachedTransform.position,
-                this.cachedTransform.rotation,
-                1.0f
-                );
+
+            if(this.effect != null)
+            {
+                this.effect.Spawn(
+                    this.cachedTransform.position,
+                    this.cachedTransform.rotation,
+                    1.0f
+                    );
+            }
         }
     }
 }

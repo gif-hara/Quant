@@ -13,13 +13,19 @@ namespace Quant.AIControllers
     public sealed class Attack : AIElement
     {
         [SerializeField]
-        private float waitAttack = 1.0f;
+        private float chargeTime = 1.0f;
+
+        [SerializeField]
+        private float coolTime = 1.0f;
 
         [SerializeField]
         private GameObject attackObject;
 
         [SerializeField]
         private SmoothDamp.Vector3 rotationSmoothDamp;
+
+        [SerializeField]
+        private int animationId = 0;
 
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
@@ -38,10 +44,22 @@ namespace Quant.AIControllers
 
         private void StartAttack(Actor owner, CompositeDisposable disposables)
         {
-            Observable.Timer(TimeSpan.FromSeconds(this.waitAttack))
+            owner.AnimationController.StartAttack(this.animationId);
+            Observable.Timer(TimeSpan.FromSeconds(this.chargeTime))
                 .SubscribeWithState3(this, owner, disposables, (_, _this, _owner, _disposables) =>
                 {
                     Instantiate(_this.attackObject, _owner.CachedTransform);
+                    _this.CoolDown(_owner, _disposables);
+                })
+                .AddTo(owner)
+                .AddTo(disposables);
+        }
+
+        private void CoolDown(Actor owner, CompositeDisposable disposables)
+        {
+            Observable.Timer(TimeSpan.FromSeconds(this.coolTime))
+                .SubscribeWithState3(this, owner, disposables, (_, _this, _owner, _disposables) =>
+                {
                     _this.StartAttack(_owner, _disposables);
                 })
                 .AddTo(owner)
