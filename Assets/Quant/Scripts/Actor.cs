@@ -32,7 +32,7 @@ namespace Quant
         public void Setup(ActorStatus status)
         {
             this.StatusController = new ActorStatusController(this, status);
-            this.AnimationController = new ActorAnimationController(this.GetComponentInChildren<Animator>(), this.CachedTransform);
+            this.AnimationController = new ActorAnimationController(this, this.GetComponentInChildren<Animator>(), this.CachedTransform);
         }
 
         public void ForceDead()

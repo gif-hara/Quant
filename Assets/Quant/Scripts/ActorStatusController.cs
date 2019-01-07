@@ -54,5 +54,9 @@ namespace Quant
         public bool IsDead => this.dynamic.HitPoint <= 0;
 
         public EffectPool DeadEffect => this.baseStatus.DeadEffect;
+
+        public float MoveAnimationSpeed => this.baseStatus.MoveAnimationSpeed;
+
+        public float AttackAnimationSpeed => this.baseStatus.AttackAnimationSpeed;
     }
 }

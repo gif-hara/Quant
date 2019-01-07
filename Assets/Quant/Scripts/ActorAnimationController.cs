@@ -8,6 +8,8 @@ namespace Quant
     /// </summary>
     public sealed class ActorAnimationController
     {
+        private Actor owner;
+
         private Animator animator;
 
         private Transform cachedTransform;
@@ -36,8 +38,9 @@ namespace Quant
             }
         }
 
-        public ActorAnimationController(Animator animator, Transform rootTransform)
+        public ActorAnimationController(Actor owner, Animator animator, Transform rootTransform)
         {
+            this.owner = owner;
             this.animator = animator;
             this.cachedTransform = rootTransform;
         }
@@ -48,10 +51,12 @@ namespace Quant
             velocity = rotation * velocity;
             this.animator.SetFloat(Parameter.Forward, velocity.z);
             this.animator.SetFloat(Parameter.Right, -velocity.x);
+            this.animator.speed = this.owner.StatusController.MoveAnimationSpeed;
         }
 
         public void StartAttack(int id)
         {
+            this.animator.speed = this.owner.StatusController.AttackAnimationSpeed;
             this.animator.Play(State.GetAttack(id));
         }
     }
