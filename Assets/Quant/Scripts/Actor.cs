@@ -25,14 +25,16 @@ namespace Quant
         {
             this.Broker = new MessageBroker();
             this.TransformController = this.GetComponent<ActorTransformController>();
-            this.AnimationController = this.GetComponent<ActorAnimationController>();
             this.CachedTransform = this.transform;
             ActorEffectController.Apply(this);
         }
 
         public void Setup(ActorStatus status)
         {
+            var model = status.Model.Spawn(this.CachedTransform.position, this.CachedTransform.rotation);
+            model.transform.SetParent(this.CachedTransform);
             this.StatusController = new ActorStatusController(this, status);
+            this.AnimationController = new ActorAnimationController(model.GetComponent<Animator>(), this.CachedTransform);
         }
 
         public void ForceDead()

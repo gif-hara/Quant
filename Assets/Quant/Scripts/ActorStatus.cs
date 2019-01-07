@@ -10,6 +10,10 @@ namespace Quant
     [CreateAssetMenu(menuName = "Quant/ActorStatus")]
     public sealed class ActorStatus : ScriptableObject
     {
+        public ModelPool Model { get { return this.model; } set { this.model = value; } }
+        [SerializeField]
+        private ModelPool model;
+
         /// <summary>
         /// ヒットポイント
         /// </summary>
@@ -31,6 +35,7 @@ namespace Quant
         public ActorStatus Clone()
         {
             var clone = CreateInstance<ActorStatus>();
+            clone.model = this.model;
             clone.hitPoint = this.hitPoint;
             clone.moveSpeed = this.moveSpeed;
             clone.deadEffect = this.deadEffect;
