@@ -31,10 +31,8 @@ namespace Quant
 
         public void Setup(ActorStatus status)
         {
-            var model = status.Model.Spawn(this.CachedTransform.position, this.CachedTransform.rotation);
-            model.transform.SetParent(this.CachedTransform);
             this.StatusController = new ActorStatusController(this, status);
-            this.AnimationController = new ActorAnimationController(model.GetComponent<Animator>(), this.CachedTransform);
+            this.AnimationController = new ActorAnimationController(this.GetComponentInChildren<Animator>(), this.CachedTransform);
         }
 
         public void ForceDead()

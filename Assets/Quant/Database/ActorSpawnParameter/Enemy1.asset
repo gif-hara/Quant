@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ce874894964ac4398617b70f4fc5bd, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  actor: {fileID: 1825275797, guid: a438b90c906bfba4ba43a22c4e677f23, type: 3}
+  actor: {fileID: 1825275797, guid: af80f0479f7251343b0951b361e13dd9, type: 3}
   actorStatus: {fileID: 11400000, guid: 8142be4de5bcadc44a7536fa6adacc7e, type: 2}
-  attachObjects: []
+  attachObjects:
+  - {fileID: 6116943398908985182, guid: 58a5e3dc204287a4593216fd009ad419, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5689d1cdadd433441bc8024a7a15c339, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 8978798550460212501, guid: 352fe7c49740a624daaf7fa3649bd6d7, type: 3}
   hitPoint: 100
   moveSpeed: 8
   deadEffect: {fileID: 2310155447560134951, guid: 4575df893a6e3f64a8283dee38413a34,

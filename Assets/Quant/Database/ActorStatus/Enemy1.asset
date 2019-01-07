@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5689d1cdadd433441bc8024a7a15c339, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
-  hitPoint: 500
-  moveSpeed: 0
+  hitPoint: 10
+  moveSpeed: 4
   deadEffect: {fileID: 6494960484660883057, guid: e0609132424a24844b1d53ad3d704fd9,
     type: 3}
