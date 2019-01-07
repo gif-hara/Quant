@@ -22,9 +22,9 @@ namespace Quant
 
         private float currentLifeTime;
 
-        public BulletStatus Status { get; private set; }
+        private int currentPenetrateCount;
 
-        private bool isHit = false;
+        public BulletStatus Status { get; private set; }
 
         void Awake()
         {
@@ -64,23 +64,30 @@ namespace Quant
             original.cachedTransform.localRotation = rotation;
             original.gameObject.SetLayerRecursive(layer);
             original.currentLifeTime = status.LifeTime;
+            original.currentPenetrateCount = status.PenetrateCount;
             original.Status = status;
             original.objectPool = objectPool;
-            original.isHit = false;
 
             return original;
         }
 
         private void OnCollision(Collider other)
         {
-            if(this.isHit)
+            if(!this.CanHit)
             {
                 return;
             }
 
-            this.isHit = true;
-            this.objectPool.Return(this);
-            this.Status.HitEffect.Spawn(this.cachedTransform.position, this.cachedTransform.rotation, 1.0f);
+            this.currentPenetrateCount--;
+            if(this.CanDestroy)
+            {
+                this.objectPool.Return(this);
+            }
+            if(this.Status.HitEffect != null)
+            {
+                this.Status.HitEffect.Spawn(this.cachedTransform.position, this.cachedTransform.rotation, 1.0f);
+            }
+
             var actor = other.GetComponentInParent<Actor>();
             if(actor == null)
             {
@@ -88,6 +95,27 @@ namespace Quant
             }
 
             actor.Broker.Publish(CollisionedBullet.Get(this));
+        }
+
+        private bool CanHit
+        {
+            get
+            {
+                if(this.currentPenetrateCount == -1)
+                {
+                    return true;
+                }
+
+                return this.currentPenetrateCount > 0;
+            }
+        }
+
+        private bool CanDestroy
+        {
+            get
+            {
+                return this.CanHit;
+            }
         }
     }
 }

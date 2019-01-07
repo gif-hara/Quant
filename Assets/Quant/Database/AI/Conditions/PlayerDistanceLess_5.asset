@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 677364833f7f5224891a9f08819d0301, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: 4286d7b5382080640a4ab55083b56558, type: 3}
+  m_Name: PlayerDistanceLess_5
   m_EditorClassIdentifier: 
-  speed: 0
-  lifeTime: 1
-  power: 10
-  penetrateCount: -1
-  hitEffect: {fileID: 0}
+  type: 1
+  distance: 5

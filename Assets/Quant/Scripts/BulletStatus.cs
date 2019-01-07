@@ -21,6 +21,16 @@ namespace Quant
         [SerializeField]
         private int power = 0;
 
+        /// <summary>
+        /// 貫通する回数
+        /// </summary>
+        /// <remarks>
+        /// <c>-1</c>だと無限に貫通する
+        /// </remarks>
+        public int PenetrateCount => this.penetrateCount;
+        [SerializeField]
+        private int penetrateCount = 1;
+
         public EffectPool HitEffect => this.hitEffect;
         [SerializeField]
         private EffectPool hitEffect = null;

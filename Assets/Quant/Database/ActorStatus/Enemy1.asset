@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   hitPoint: 1000
-  moveSpeed: 4
+  moveSpeed: 6
   deadEffect: {fileID: 6494960484660883057, guid: e0609132424a24844b1d53ad3d704fd9,
     type: 3}
