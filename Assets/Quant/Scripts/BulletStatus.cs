@@ -29,7 +29,7 @@ namespace Quant
         /// </remarks>
         public int PenetrateCount => this.penetrateCount;
         [SerializeField]
-        private int penetrateCount = 1;
+        private int penetrateCount = 0;
 
         public EffectPool HitEffect => this.hitEffect;
         [SerializeField]

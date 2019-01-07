@@ -15,5 +15,6 @@ MonoBehaviour:
   speed: 40
   lifeTime: 1
   power: 10
+  penetrateCount: 0
   hitEffect: {fileID: 1014851587540864414, guid: 5332791ebce075d4a9e56f4581e7fb47,
     type: 3}

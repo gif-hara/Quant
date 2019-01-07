@@ -78,7 +78,6 @@ namespace Quant
                 return;
             }
 
-            this.currentPenetrateCount--;
             if(this.CanDestroy)
             {
                 this.objectPool.Return(this);
@@ -88,6 +87,7 @@ namespace Quant
                 this.Status.HitEffect.Spawn(this.cachedTransform.position, this.cachedTransform.rotation, 1.0f);
             }
 
+            this.currentPenetrateCount--;
             var actor = other.GetComponentInParent<Actor>();
             if(actor == null)
             {
@@ -101,12 +101,12 @@ namespace Quant
         {
             get
             {
-                if(this.currentPenetrateCount == -1)
+                if(this.currentPenetrateCount <= -1)
                 {
                     return true;
                 }
 
-                return this.currentPenetrateCount > 0;
+                return this.currentPenetrateCount >= 0;
             }
         }
 
@@ -114,7 +114,7 @@ namespace Quant
         {
             get
             {
-                return this.CanHit;
+                return this.currentPenetrateCount == 0;
             }
         }
     }

@@ -20,10 +20,13 @@ namespace Quant.AIControllers
 
         private Actor owner;
 
+        private AIElement currentElement;
+
         private void Start()
         {
             this.owner = this.GetComponentInParent<Actor>();
-            this.bundles[this.currentBundleId].Element.Enter(this.owner, this.disposables);
+            this.currentElement = this.bundles[this.currentBundleId].Element.Clone;
+            this.currentElement.Enter(this.owner, this.disposables);
 
             this.UpdateAsObservable()
                 .SubscribeWithState(this, (_, _this) => _this.ChangeAI());
@@ -31,6 +34,11 @@ namespace Quant.AIControllers
 
         private void ChangeAI()
         {
+            if(!this.currentElement.CanExit)
+            {
+                return;
+            }
+
             var bundle = this.bundles[this.currentBundleId];
             foreach (var c in bundle.ConditionBundles)
             {
@@ -39,8 +47,8 @@ namespace Quant.AIControllers
                     bundle.Element.Exit();
                     this.disposables.Clear();
                     this.currentBundleId = c.NextBundleId;
-                    var nextBundle = this.bundles[this.currentBundleId];
-                    nextBundle.Element.Enter(this.owner, this.disposables);
+                    this.currentElement = this.bundles[this.currentBundleId].Element.Clone;
+                    this.currentElement.Enter(this.owner, this.disposables);
                     break;
                 }
             }

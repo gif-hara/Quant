@@ -23,6 +23,8 @@ namespace Quant
 
         public static class State
         {
+            public static readonly string Idle = "Idle";
+
             public static readonly string Attack0 = "Attack0";
 
             public static string GetAttack(int id)
@@ -52,6 +54,11 @@ namespace Quant
             this.animator.SetFloat(Parameter.Forward, velocity.z);
             this.animator.SetFloat(Parameter.Right, -velocity.x);
             this.animator.speed = this.owner.StatusController.MoveAnimationSpeed;
+        }
+
+        public void StartIdle()
+        {
+            this.animator.Play(State.Idle);
         }
 
         public void StartAttack(int id)

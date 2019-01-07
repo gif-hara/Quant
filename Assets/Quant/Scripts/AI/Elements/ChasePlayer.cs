@@ -12,11 +12,14 @@ namespace Quant.AIControllers
     [CreateAssetMenu(menuName = "Quant/AI/Element/ChasePlayer")]
     public sealed class ChasePlayer : AIElement
     {
+        public override AIElement Clone => CreateInstance<ChasePlayer>();
+
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
             var agent = owner.GetComponent<NavMeshAgent>();
             agent.updatePosition = false;
             agent.updateRotation = false;
+            owner.AnimationController.StartIdle();
             owner.UpdateAsObservable()
                 .SubscribeWithState3(this, owner, agent, (_, _this, _owner, _agent) =>
                 {

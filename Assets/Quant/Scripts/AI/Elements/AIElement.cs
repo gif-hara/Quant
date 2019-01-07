@@ -9,6 +9,8 @@ namespace Quant.AIControllers
     /// </summary>
     public abstract class AIElement : ScriptableObject
     {
+        public abstract AIElement Clone { get; }
+
         /// <summary>
         /// AIが起動した際の処理
         /// </summary>
@@ -20,5 +22,7 @@ namespace Quant.AIControllers
         public virtual void Exit()
         {
         }
+
+        public virtual bool CanExit => true;
     }
 }

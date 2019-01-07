@@ -27,12 +27,34 @@ namespace Quant.AIControllers
         [SerializeField]
         private int animationId = 0;
 
+        /// <summary>
+        /// AIを切り替えるまでに発射する最低回数
+        /// </summary>
+        [SerializeField]
+        private int canExitFireCount = 1;
+
+        public override AIElement Clone
+        {
+            get
+            {
+                var clone = CreateInstance<Attack>();
+                clone.chargeTime = this.chargeTime;
+                clone.coolTime = this.coolTime;
+                clone.attackObject = this.attackObject;
+                clone.rotationSmoothDamp = this.rotationSmoothDamp;
+                clone.animationId = this.animationId;
+                clone.canExitFireCount = this.canExitFireCount;
+
+                return clone;
+            }
+        }
+
         public override void Enter(Actor owner, CompositeDisposable disposables)
         {
             owner.AnimationController.SetMove(Vector3.zero);
             this.StartAttack(owner, disposables);
             owner.UpdateAsObservable()
-                .SubscribeWithState2(owner, new SmoothDamp.Vector3(this.rotationSmoothDamp), (_, _owner, r) =>
+                .SubscribeWithState2(owner, this.rotationSmoothDamp, (_, _owner, r) =>
                 {
                     var player = GameEnvironment.Instance.Player.CachedTransform;
                     r.Target = Quaternion.LookRotation(player.position - _owner.CachedTransform.position, Vector3.up).eulerAngles;
@@ -41,6 +63,8 @@ namespace Quant.AIControllers
                 .AddTo(owner)
                 .AddTo(disposables);
         }
+
+        public override bool CanExit => this.canExitFireCount <= 0;
 
         private void StartAttack(Actor owner, CompositeDisposable disposables)
         {
@@ -60,6 +84,7 @@ namespace Quant.AIControllers
             Observable.Timer(TimeSpan.FromSeconds(this.coolTime))
                 .SubscribeWithState3(this, owner, disposables, (_, _this, _owner, _disposables) =>
                 {
+                    _this.canExitFireCount--;
                     _this.StartAttack(_owner, _disposables);
                 })
                 .AddTo(owner)
